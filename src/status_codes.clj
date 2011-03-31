@@ -51,3 +51,16 @@
   (render [code _]
     (-> (response "")
         (status (response-codes code)))))
+
+(defn keyword->code
+  "Converts keyworded status code to status code in response map."
+  [code]
+  (if code
+    (or (response-codes code)
+        code)
+    200))
+
+(extend-type clojure.lang.APersistentMap
+  Renderable
+  (render [m _]
+    (merge (response "") (assoc m :status (keyword->code (:status m))))))
