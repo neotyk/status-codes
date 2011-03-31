@@ -1,6 +1,8 @@
 # status-codes
 
 Easy response status codes for compojure.
+[Get it](http://clojars.org/status-codes) from
+[Clojars](http://clojars.org).
 
 ## Usage
 
