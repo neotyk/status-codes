@@ -1,4 +1,4 @@
-(defproject status-codes "0.2"
+(defproject status-codes "0.3-SNAPSHOT"
   :description "Easy status codes for compojure."
   :dependencies [[org.clojure/clojure "1.2.0"]
                  [compojure "0.6.2"]
