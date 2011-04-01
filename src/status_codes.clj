@@ -39,6 +39,7 @@
    :unsupported-media-type          415
    :requested-range-not-satisfiable 416
    :expectation-failed              417
+   :i-m-a-teapot                    418
    :internal-server-error           500
    :not-implemented                 501
    :bad-gateway                     502
