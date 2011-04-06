@@ -1,6 +1,4 @@
-(ns status-codes
-  (:use compojure.response
-        [ring.util.response :only [response status]]))
+(ns status-codes)
 
 (def response-codes
   ^{:doc                            "HTTP Response Status Codes"}
@@ -47,12 +45,6 @@
    :gateway-timeout                 504
    :http-version-not-supported      505})
 
-(extend-type clojure.lang.Keyword
-  Renderable
-  (render [code _]
-    (-> (response "")
-        (status (response-codes code)))))
-
 (defn keyword->code
   "Converts keyworded status code to status code in response map."
   [code]
@@ -60,8 +52,3 @@
     (or (response-codes code)
         code)
     200))
-
-(extend-type clojure.lang.APersistentMap
-  Renderable
-  (render [m _]
-    (merge (response "") (assoc m :status (keyword->code (:status m))))))
