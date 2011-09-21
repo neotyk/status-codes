@@ -49,6 +49,8 @@
   "Converts keyworded status code to status code in response map."
   [code]
   (if code
-    (or (response-codes code)
-        code)
+    (if (integer? code)
+      code
+      (or (response-codes code)
+          (throw (Exception. (str "Unknown status code '" code "'")))))
     200))

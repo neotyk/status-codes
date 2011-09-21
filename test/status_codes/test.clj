@@ -8,4 +8,8 @@
        200 nil
        202 202
        410 :gone
-       304 :not-modified))
+       304 :not-modified)
+  (is (thrown?
+       Exception
+       (keyword->code :invalid-status-code))))
+
