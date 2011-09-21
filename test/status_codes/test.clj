@@ -7,4 +7,5 @@
        (= expected (keyword->code k))
        200 nil
        202 202
-       410 :gone))
+       410 :gone
+       304 :not-modified))

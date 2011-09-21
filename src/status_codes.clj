@@ -16,7 +16,7 @@
    :moved-permanently               301
    :found                           302
    :see-other                       303
-   :not-modifies                    304
+   :not-modified                    304
    :use-proxy                       305
    :temporary-redirect              307
    :bad-request                     400
