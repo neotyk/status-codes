@@ -16,7 +16,7 @@
    :moved-permanently               301
    :found                           302
    :see-other                       303
-   :not-modifies                    304
+   :not-modified                    304
    :use-proxy                       305
    :temporary-redirect              307
    :bad-request                     400
@@ -49,6 +49,8 @@
   "Converts keyworded status code to status code in response map."
   [code]
   (if code
-    (or (response-codes code)
-        code)
+    (if (integer? code)
+      code
+      (or (response-codes code)
+          (throw (Exception. (str "Unknown status code '" code "'")))))
     200))
