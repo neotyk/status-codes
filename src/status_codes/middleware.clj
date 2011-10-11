@@ -6,4 +6,5 @@
   [handler]
   (fn [req]
     (let [{code :status :as resp} (handler req)]
-      (assoc resp :status (keyword->code code)))))
+      (if resp
+        (assoc resp :status (keyword->code code))))))

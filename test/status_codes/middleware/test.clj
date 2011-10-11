@@ -7,9 +7,11 @@
   [status]
   (->
    (fn [req]
-     {:status status
-      :headers {}
-      :body ""})
+     (if (= (:uri req)
+            "/")
+       {:status status
+       :headers {}
+       :body ""}))
    wrap-status-codes))
 
 (deftest test-ring-middleware
@@ -17,3 +19,6 @@
        (= expected (:status ((status-producing-handler status) (request :get "/"))))
        201 201
        202 :accepted))
+
+(deftest test-fall-through
+  (is (nil? ((status-producing-handler 200) (request :get "/nil")))))
