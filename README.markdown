@@ -6,28 +6,39 @@ Easy response status codes for compojure.
 
 ## Usage
 
-### In Compojure
+### leiningen
 
-    (use 'status-codes.compojure
-         '[compojure.core :only [GET routes]])
-    (routes
-       (GET "/ok"           _ :ok)
-       (GET "/accepted"     _ :accepted)
-       (GET "/ok-map"       _ {:status :ok})
-       (GET "/accepted-map" _ {:status :accepted}))
+```clojure
+[status-codes "0.5"]
+```
 
-### As ring middleware
+### compojure
 
-    (use 'status-codes.middleware)
-    (defn handler [req]
-      ;; your handling code that can use keyword status codes
-      {:status :accepted ..})
-    ;; wrap your handler in status-codes middleware
-    (def app
-      (-> handler
-        wrap-status-codes
-        ;; other wrappers that you need
-        ))
+```clojure
+(use 'status-codes.compojure
+     '[compojure.core :only [GET routes]])
+(routes
+   (GET "/ok"           _ :ok)
+   (GET "/accepted"     _ :accepted)
+   (GET "/ok-map"       _ {:status :ok})
+   (GET "/accepted-map" _ {:status :accepted}))
+```
+
+### ring middleware
+
+```clojure
+(use 'status-codes.middleware)
+(defn handler [req]
+  ;; your handling code that can use keyword status codes
+  {:status :accepted ..})
+
+;; wrap your handler in status-codes middleware
+(def app
+  (-> handler
+    wrap-status-codes
+    ;; other wrappers that you need
+    ))
+```
 
 ## License
 
